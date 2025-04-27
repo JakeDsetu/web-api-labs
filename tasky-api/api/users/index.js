@@ -33,8 +33,24 @@ router.post('/', asyncHandler(async (req, res) => {
 
 async function registerUser(req, res) {
     // Add input validation logic here
-    await User.create(req.body);
-    res.status(201).json({ success: true, msg: 'User successfully created.' });
+    try {
+        const validatePassword = (password) => {
+            const re = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+            return re.test(password);
+          };
+
+        const { password } = req.body;
+    
+        if (!validatePassword(password)) {
+          throw new Error('Invalid password');
+        }
+    
+        await User.create(req.body);
+        res.status(201).json({ success: true, msg: 'User successfully created.' });
+      }
+      catch (err) {
+        next(err);
+      }
 }
 
 async function authenticateUser(req, res) {
