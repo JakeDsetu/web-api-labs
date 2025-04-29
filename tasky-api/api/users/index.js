@@ -35,7 +35,7 @@ async function registerUser(req, res) {
     // Add input validation logic here
     try {
         const validatePassword = (password) => {
-            const re = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+            let re = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
             return re.test(password);
           };
 
