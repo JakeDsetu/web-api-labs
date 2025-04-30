@@ -16,7 +16,7 @@ function TasksPage() {
     const [ formState, setFormState ] = useState({
       title: "",
       description: "",
-      // deadline: "",
+      deadline: "",
       priority: "Low"
     });
   
