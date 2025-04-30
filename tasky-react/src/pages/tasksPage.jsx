@@ -16,11 +16,11 @@ function TasksPage() {
     const [ formState, setFormState ] = useState({
       title: "",
       description: "",
-      deadline: "",
+      // deadline: "",
       priority: "Low"
     });
   
-  //console.log(formState);
+  // console.log(formState);
 
   const doneHandler = (taskIndex) => {
     const tasks = [...taskState.tasks];
@@ -62,7 +62,8 @@ function TasksPage() {
   const formSubmitHandler = async (event) => {
     event.preventDefault();
     const tasks = taskState.tasks?[...taskState.tasks]:[];
-    const form = {...formState};
+    const form = {...formState}; 
+    console.log(form);
     const newTask = await addTask(form);
     tasks.push(newTask);
     setTaskState({tasks});
